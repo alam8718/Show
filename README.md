@@ -12,43 +12,44 @@ As the api is http type so by the netlify server iss getting blocked as for that
 
 ✨✨✨Experience Show. in action!
 
-## Visit the live demo here: [pit.](https://Showii.netlify.app/)
+## Visit the live demo here: [show.](https://sh0w.netlify.app/)
 
 ## 🛠️ Installation steps:
 
 To run this project locally or integrate it into your environment, follow these steps:
 
 1. Clone the repository:
-    
-    ```bash
-    git clone <https://github.com/alam8718/Show..git>
-    
-    ```
-    
+
+   ```bash
+   git clone <repo link>
+
+   ```
+
 2. Extract the file
 3. Install the node modules:
-    
-    ```bash
-    npm install
-    
-    ```
-    
+
+   ```bash
+   npm install
+
+   ```
+
 4. To run the application:
-    
-    ```bash
-    npm run dev
-    
-    ```
-    
+
+   ```bash
+   npm run dev
+
+   ```
 
 ## Technologies used:
+
 1. HTML
 2. CSS
 3. JavaScript
-4. React
-5. Tailwind CSS
-6. React Form
-7. React Icons
+4. TypeScript
+5. React
+6. Tailwind CSS
+7. React Form
+8. React Icons
 
 Feel free to explore my other Projects and take a look of live demos to get a firsthand experience of what the project offers. If you have any questions, feedback, or suggestions, don't hesitate to reach out.
 
