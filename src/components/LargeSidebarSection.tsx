@@ -1,4 +1,4 @@
-import React, {Children, ReactNode, useState} from "react";
+import {Children, ReactNode, useState} from "react";
 import {Button} from "./Button";
 import {ChevronDown, ChevronUp} from "lucide-react";
 

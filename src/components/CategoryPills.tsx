@@ -1,6 +1,6 @@
-import React, {useEffect, useRef, useState} from "react";
-import {Button} from "./Button";
 import {ChevronLeft, ChevronRight} from "lucide-react";
+import {Button} from "./Button";
+import {useEffect, useRef, useState} from "react";
 
 type CategoryPillProps = {
   categories: string[];
@@ -8,9 +8,9 @@ type CategoryPillProps = {
   onSelect: (category: string) => void;
 };
 
-const TRANSLATE_AMMOUNT = 200;
+const TRANSLATE_AMOUNT = 200;
 
-function CategoryPills({
+export function CategoryPills({
   categories,
   selectedCategory,
   onSelect,
@@ -21,10 +21,11 @@ function CategoryPills({
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (containerRef.current === null) return;
+    if (containerRef.current == null) return;
+
     const observer = new ResizeObserver((entries) => {
-      const container = containerRef.current;
-      if (container === null) return;
+      const container = entries[0]?.target;
+      if (container == null) return;
 
       setIsLeftVisible(translate > 0);
       setIsRightVisible(
@@ -33,6 +34,7 @@ function CategoryPills({
     });
 
     observer.observe(containerRef.current);
+
     return () => {
       observer.disconnect();
     };
@@ -43,55 +45,53 @@ function CategoryPills({
       <div
         className="flex whitespace-nowrap gap-3 transition-transform w-[max-content]"
         style={{transform: `translateX(-${translate}px)`}}>
-        {categories.map((cat, index) => (
+        {categories.map((category) => (
           <Button
-            onClick={() => onSelect(cat)}
-            key={index + 1}
-            variant={selectedCategory === cat ? "dark" : "default"}
+            key={category}
+            onClick={() => onSelect(category)}
+            variant={selectedCategory === category ? "dark" : "default"}
             className="py-1 px-3 rounded-lg whitespace-nowrap">
-            {cat}
+            {category}
           </Button>
         ))}
       </div>
-      {/*left side arrows */}
       {isLeftVisible && (
         <div className="absolute left-0 top-1/2 -translate-y-1/2 bg-gradient-to-r from-white from-50% to-transparent w-24 h-full">
           <Button
+            variant="ghost"
+            size="icon"
+            className="h-full aspect-square w-auto p-1.5"
             onClick={() => {
               setTranslate((translate) => {
-                const newTranslate = translate - TRANSLATE_AMMOUNT;
+                const newTranslate = translate - TRANSLATE_AMOUNT;
                 if (newTranslate <= 0) return 0;
                 return newTranslate;
               });
-            }}
-            variant="ghost"
-            size="icon"
-            className="h-full aspect-square w-auto p-1.5">
+            }}>
             <ChevronLeft />
           </Button>
         </div>
       )}
-      {/*right side arrows */}
       {isRightVisible && (
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 bg-gradient-to-l from-white from-50% to-transparent  w-24 flex justify-end h-full">
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 bg-gradient-to-l from-white from-50% to-transparent w-24 h-full flex justify-end">
           <Button
+            variant="ghost"
+            size="icon"
+            className="h-full aspect-square w-auto p-1.5"
             onClick={() => {
               setTranslate((translate) => {
-                if (containerRef.current === null) {
+                if (containerRef.current == null) {
                   return translate;
                 }
-                const newTranslate = translate + TRANSLATE_AMMOUNT;
+                const newTranslate = translate + TRANSLATE_AMOUNT;
                 const edge = containerRef.current.scrollWidth;
                 const width = containerRef.current.clientWidth;
                 if (newTranslate + width >= edge) {
-                  return edge + width;
+                  return edge - width;
                 }
                 return newTranslate;
               });
-            }}
-            variant="ghost"
-            size="icon"
-            className="h-full aspect-square w-auto p-1.5">
+            }}>
             <ChevronRight />
           </Button>
         </div>
@@ -99,5 +99,3 @@ function CategoryPills({
     </div>
   );
 }
-
-export default CategoryPills;

@@ -1,6 +1,4 @@
 import {
-  ChevronDown,
-  ChevronUp,
   Clapperboard,
   Clock,
   Home,
@@ -21,7 +19,7 @@ import {
   Shirt,
   Podcast,
 } from "lucide-react";
-import React, {ElementType} from "react";
+import {ElementType} from "react";
 import {buttonStyles} from "../components/Button";
 import {twMerge} from "tailwind-merge";
 import {LargeSidebarSection} from "../components/LargeSidebarSection";

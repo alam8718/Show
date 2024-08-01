@@ -1,5 +1,5 @@
 import {PageHeader} from "./layouts/PageHeader";
-import CategoryPills from "./components/CategoryPills";
+import {CategoryPills} from "./components/CategoryPills";
 import {categories, videos} from "./data/HomeData";
 import {useState} from "react";
 import VideoGridItem from "./components/VideoGridItem";
